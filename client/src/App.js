@@ -1,56 +1,73 @@
 // App.js
 
 import React, { useState, useEffect } from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Box, Button, Typography, IconButton } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Box, Button, Typography, IconButton, Divider, Menu, MenuItem } from '@mui/material';
 import Note from './components/Note';
-import { createNote, loadNotes, deleteNote } from './noteService'; // Assuming these functions are correctly implemented in noteService
+import { createNote, loadNotes, deleteNote } from './noteService';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AddIcon from '@mui/icons-material/Add';
 import './App.css';
 
 const drawerWidth = 240;
 
 function App() {
-  const [notes, setNotes] = useState([]); // State to hold notes array
-  const [selectedNoteId, setSelectedNoteId] = useState(null); // State to hold ID of currently selected note
+  const [notes, setNotes] = useState([]); 
+  const [selectedNoteId, setSelectedNoteId] = useState(null); 
+  const [anchorEl, setAnchorEl] = useState(null); 
+  const [menuNoteId, setMenuNoteId] = useState(null); 
 
   useEffect(() => {
-    const loadedNotes = loadNotes(); // Load notes from localStorage on component mount
-    setNotes(loadedNotes); // Set notes state with loaded notes
+    const loadedNotes = loadNotes(); 
+    setNotes(loadedNotes); 
     if (loadedNotes.length > 0) {
-      setSelectedNoteId(loadedNotes[0].id); // Select the first note by default
+      setSelectedNoteId(loadedNotes[0].id); 
     }
-  }, []); // Empty dependency array ensures useEffect runs only on component mount
+  }, []); 
 
   // Function to handle creation of a new note
   const handleCreateNote = () => {
     try {
-      const newNote = createNote(); // Create new note using noteService createNote function
-      setNotes([...notes, newNote]); // Update notes state with new note
-      setSelectedNoteId(newNote.id); // Select the newly created note
+      const newNote = createNote(); 
+      setNotes([...notes, newNote]); 
+      setSelectedNoteId(newNote.id);
     } catch (error) {
       console.error('Error creating note:', error.message);
-      // Optionally, notify the user or handle the error in some other way
     }
   };
 
   // Function to handle deletion of a note by ID
   const handleDeleteNote = (id) => {
-    deleteNote(id); // Delete note using noteService deleteNote function
-    const updatedNotes = notes.filter(note => note.id !== id); // Filter out the deleted note from notes state
-    setNotes(updatedNotes); // Update notes state with filtered notes
+    deleteNote(id); 
+    const updatedNotes = notes.filter(note => note.id !== id); 
+    setNotes(updatedNotes); 
     if (id === selectedNoteId) {
-      setSelectedNoteId(null); // Deselect the note if it was selected and deleted
+      setSelectedNoteId(null); 
     }
+    handleCloseMenu(); 
+  };
+
+  // Function to open the menu
+  const handleOpenMenu = (event, id) => {
+    setAnchorEl(event.currentTarget); // Set anchor element for the menu
+    setMenuNoteId(id); // Set note ID associated with the menu
+  };
+
+  // Function to close the menu
+  const handleCloseMenu = () => {
+    setAnchorEl(null); 
+    setMenuNoteId(null); 
   };
 
   // Function to check if a note exists for today
   const hasNoteForToday = () => {
-    const today = new Date().toLocaleDateString();
-    return notes.some(note => new Date(note.createdAt).toLocaleDateString() === today);
+    const today = new Date().toLocaleDateString('uk-UA');
+    return notes.some(note => new Date(note.createdAt).toLocaleDateString('uk-UA') === today);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', height: '100vh' }}>
+      {/* Drawer */}
       <Drawer
         sx={{
           width: drawerWidth,
@@ -64,33 +81,51 @@ function App() {
         anchor="left"
       >
         <Box sx={{ p: 2 }}>
-          {/* Conditionally render based on whether a note exists for today */}
           {hasNoteForToday() ? (
-            <Typography variant="body1" sx={{ px: 2, py: 1 }}>
-              Today you already did the note
+            <Typography align="center" variant="caption" sx={{ px: 2, py: 1 }}>
+              Сьогодні ви вже зробили запис
             </Typography>
           ) : (
-            <Button variant="contained" color="primary" onClick={handleCreateNote} fullWidth>
-              Create New Note
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<AddIcon />}
+              onClick={handleCreateNote}
+              fullWidth
+              sx={{ mb: 2 }}
+            >
+              Створити новий запис
             </Button>
           )}
         </Box>
+        <Divider />
         <List>
           {notes.map(note => (
-            <ListItem key={note.id} disablePadding>
-              <ListItemButton onClick={() => setSelectedNoteId(note.id)}>
-                <ListItemText primary={note.createdAt} />
+            <ListItem
+              key={note.id}
+              disablePadding
+              selected={selectedNoteId === note.id}
+              onClick={() => setSelectedNoteId(note.id)}
+            >
+              <ListItemButton>
+                <ListItemText primary={new Date(note.createdAt).toLocaleDateString('uk-UA')} />
+                <IconButton
+                  onClick={(event) => handleOpenMenu(event, note.id)}
+                  edge="end"
+                  size="large"
+                >
+                  <MoreVertIcon />
+                </IconButton>
               </ListItemButton>
-              <IconButton onClick={() => handleDeleteNote(note.id)} color="secondary">
-                <DeleteIcon />
-              </IconButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
+      
+      {/* Main content area */}
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
       >
         {selectedNoteId ? (
           <Note
@@ -98,9 +133,18 @@ function App() {
             onDeleteNote={handleDeleteNote} // Pass handleDeleteNote function to Note component
           />
         ) : (
-          <Typography>Select a note or create a new one.</Typography>
+          <Typography variant="h6" sx={{ p: 2 }}>Оберіть нотатку або створіть нову.</Typography>
         )}
       </Box>
+
+      {/* Menu for delete option */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+      >
+        <MenuItem onClick={() => handleDeleteNote(menuNoteId)}>Видалити нотатку</MenuItem>
+      </Menu>
     </Box>
   );
 }
