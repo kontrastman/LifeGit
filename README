@@ -7,7 +7,7 @@ LifeGit is a diary that helps to keep track of the most important events of each
 - **User Authentication**: Secure login and session management to protect your entries.
 - **Sidebar Navigation**: Easily browse through your entries with an intuitive sidebar.
 - **Responsive Design**: Optimized for both mobile and desktop use.
-Customizable Themes: Personalize the look and feel of your journal
+- **Customizable Themes**: Personalize the look and feel of your journal.
 
 ## Technologies
 
@@ -17,6 +17,6 @@ Customizable Themes: Personalize the look and feel of your journal
 - **Testing**: Jest, React Testing Library
 
 ## Development
-### Project structure
-- *'client/'* - Main source code for frontend
-- *'server/'* - Source code for backend
+### Project Structure
+- `client/` - Main source code for the frontend
+- `server/` - Source code for the backend
