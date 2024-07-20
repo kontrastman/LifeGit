@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+import Navbar from './components/Navbar/Navbar'
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      
+    <div>
+      <Navbar></Navbar>
     </div>
   );
 }
