@@ -3,9 +3,16 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         'primary': ['"Inter"', 'sans-serif'],
       },
+      fontSize: {
+        cardTitle: ['10px', '12px'],
+      },
+      colors: {
+        'date-bg': '#FBFBFB',
+        'generalText': '#282828',
+      }
     },
   },
   daisyui: {
@@ -17,9 +24,10 @@ module.exports = {
           "accent": "#2E6330",
           "neutral": "#F6F1E9",
           "text": "#282828",
-          "ghost": "#0D0D0",
+          "ghost": "#D0D0D0",
           "base-100": "#ffffff",
         },
+        
       },
       "dark",
       "cupcake",
