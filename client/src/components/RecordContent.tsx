@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeBadge from './RecordItem/TimeBadge';
 import { records } from "../records";
 
 interface RecordProps{
@@ -8,10 +9,10 @@ interface RecordProps{
 const RecordContent: React.FC<RecordProps> = ({selectedItem}) => {
    const data = selectedItem ? records[selectedItem] : [];
     return(
-        <div>
+        <div className="flex flex-row w-screen">
             {data.map((record,index) => (
                 <div key={index}>
-                    <time>{record.time}</time>
+                    <TimeBadge time={record.time}/>
                     <p>{record.text}</p>
                 </div>
             ))
