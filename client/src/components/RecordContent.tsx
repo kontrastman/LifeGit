@@ -9,11 +9,11 @@ interface RecordProps{
 const RecordContent: React.FC<RecordProps> = ({selectedItem}) => {
    const data = selectedItem ? records[selectedItem] : [];
     return(
-        <div className="flex flex-row w-screen">
+        <div className="pt-5 px-[30px]">
             {data.map((record,index) => (
-                <div key={index}>
+                <div key={index} className="flex flex-column w-content pb-[15px]">
                     <TimeBadge time={record.time}/>
-                    <p>{record.text}</p>
+                    <p className="pl-2.5">{record.text}</p>
                 </div>
             ))
             }
