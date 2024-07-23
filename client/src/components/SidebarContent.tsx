@@ -9,7 +9,6 @@ interface SidebarProps {
   setSelectedItem: (item: string) => void;
 }
 
-
 const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
   const todayDate = dates.find((date) => checkIfIsToday(date));
   const otherDates = dates.filter((date) => !checkIfIsToday(date));
@@ -18,27 +17,47 @@ const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
     <>
       <div className="p-4 h-[100px] w-full bg-base-100 flex flex-col items-center justify-center sticky overflow-hidden">
         {todayDate ? (
-          <a className="cursor-pointer" key={uuidv7()} onClick={() => setSelectedItem(todayDate)}>
-            <NoteListItem date={todayDate} isToday={true} />
-          </a>
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          >
+            <a
+              className="cursor-pointer"
+              key={uuidv7()}
+              onClick={() => setSelectedItem(todayDate)}
+            >
+              <NoteListItem date={todayDate} isToday={true} />
+            </a>
+          </label>
         ) : (
-          <>
-          <AddNoteButton onClick={() => setSelectedItem("add-note")}/>
-          </>
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          >
+            <AddNoteButton onClick={() => setSelectedItem("add-note")} />
+          </label>
         )}
       </div>
 
       <div className=" w-full pt-4 bg-neutral gap-4 flex flex-col items-center lg:h-[calc(100vh-160px)] overflow-y-auto">
         {otherDates.map((date) => (
-          <a
-            className="cursor-pointer"
-            key={uuidv7()}
-            onClick={() => setSelectedItem(date)}
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
           >
-            <NoteListItem date={date} isToday={false} />
-          </a>
+            <a
+              className="cursor-pointer"
+              key={uuidv7()}
+              onClick={() => setSelectedItem(date)}
+            >
+              <NoteListItem date={date} isToday={false} />
+            </a>
+          </label>
         ))}
-         <div className="h-16"></div>
+        <div className="h-16"></div>
       </div>
     </>
   );

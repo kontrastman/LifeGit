@@ -8,9 +8,9 @@ interface Records {
 }
 
 export const records:Records = {
-    // '21/07/2024': [
-    //     {time: '14:05', text: "Finally finished sidebar!"}
-    // ],
+    '23/07/2024': [
+        {time: '14:05', text: "Finally finished sidebar!"}
+    ],
     '16/03/2024': [
         {time: '16:04', text: "I was in the pool"},
         {time: '17:07', text: "Walking now"},

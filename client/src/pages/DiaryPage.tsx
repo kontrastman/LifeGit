@@ -12,11 +12,6 @@ const PageWithSidebarTemplate: React.FC = () => {
         <RecordContent selectedItem={selectedItem} />
       </div>
       <div className="drawer-side flex flex-col h-screen overflow-y-hidden-important w-fixed-sidebar">
-        <label
-          htmlFor="my-drawer-2"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
         <SidebarContent setSelectedItem={setSelectedItem} />
       </div>
     </div>
