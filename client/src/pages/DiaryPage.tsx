@@ -1,15 +1,26 @@
-import React from "react";
-import SidebarContent from "../components/SidebarContent";
+import React, { useState } from "react";
 import RecordContent from "../components/RecordContent";
-import PageWithSidebarTemplate from "../components/PageWithSidebarTemplate";
+import SidebarContent from "../components/SidebarContent";
 
-const DiaryPage: React.FC = () => {
-    return (
-        <PageWithSidebarTemplate
-            SidebarComponent={SidebarContent}
-            ContentComponent={RecordContent}
-        />
-    );
+const PageWithSidebarTemplate: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  return (
+    <div className="drawer fixed lg:drawer-open h-screen">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col flex-1">
+        <RecordContent selectedItem={selectedItem} />
+      </div>
+      <div className="drawer-side flex flex-col h-screen overflow-y-hidden-important w-fixed-sidebar">
+        <label
+          htmlFor="my-drawer-2"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <SidebarContent setSelectedItem={setSelectedItem} />
+      </div>
+    </div>
+  );
 };
 
-export default DiaryPage;
+export default PageWithSidebarTemplate;
