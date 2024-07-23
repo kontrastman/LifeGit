@@ -8,15 +8,27 @@ html:has(.drawer-toggle:checked) {
   scrollbar-gutter: auto;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4F200D transparent;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     height: 100vh;
 }
 
+
+
 @layer utilities {
     .w-fixed-sidebar {
         width: 260px !important;
     }
+
+    .w-fixed-sidebar :hover{
+      scrollbar-color: #935941 transparent;
+    }
+
     .overflow-y-hidden-important {
       @apply overflow-y-hidden;
       overflow-y: hidden !important;
