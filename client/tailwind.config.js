@@ -12,6 +12,9 @@ module.exports = {
       colors: {
         'date-bg': '#FBFBFB',
         'generalText': '#282828',
+      },
+      dropShadow: {
+        'card': '0 2px 5px rgba(98,98,98, 0.25)',
       }
     },
   },

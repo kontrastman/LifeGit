@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { formatDate, checkIfIsToday } from "../../utils/dateHelper";
+import { formatDate } from "../../utils/dateHelper";
 
 interface DateProps {
   date: string;
+  isToday: boolean;
 }
 
-const NoteListItemDate: React.FC<DateProps> = ({ date}) => {
-  const isToday = checkIfIsToday(date); 
+const NoteListItemDate: React.FC<DateProps> = ({ date, isToday}) => {
+  
 
   return (
     <>

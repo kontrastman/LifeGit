@@ -6,4 +6,16 @@
 
 body {
     font-family: 'Inter', sans-serif;
+    height: 100vh;
+    
 }
+
+@layer utilities {
+    .w-fixed-sidebar {
+        width: 260px !important;
+    }
+    .overflow-y-hidden-important {
+      @apply overflow-y-hidden;
+      overflow-y: hidden !important;
+    }
+  }

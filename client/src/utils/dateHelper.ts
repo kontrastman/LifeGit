@@ -13,6 +13,5 @@ export function formatDate(sourceDate:string, inputFormat: string, outputFormat:
     const today = new Date();
     const todayFormatted = format(today,"yyyy-MM-dd");
     const inputDate = formatDate(sourceDate, "dd/MM/yyyy", "yyyy-MM-dd"); 
-    const isToday = inputDate === todayFormatted;
-    return isToday;
+    return inputDate === todayFormatted;
   }
