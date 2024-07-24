@@ -6,12 +6,14 @@ import { checkIfIsToday } from "../utils/dateHelper";
 import { dates } from "../records";
 import { uuidv7 } from "uuidv7";
 import NoteListItem from "./NoteListItem/NoteListItem";
+import NoteListItemWrapper from "./NoteListItem/NoteListItemWrapper";
 import AddNoteButton from "./AddNoteButton";
 
 
 
 const SidebarContent: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
+  const selectedNote = useSelector((state: RootState) => state.selectedNote.selectedNote);
 
   const todayDate = dates.find((date) => checkIfIsToday(date));
   const otherDates = dates.filter((date) => !checkIfIsToday(date));
@@ -24,47 +26,21 @@ const SidebarContent: React.FC = () => {
     <>
       <div className="p-4 h-[100px] w-full bg-base-100 flex flex-col items-center justify-center sticky overflow-hidden">
         {todayDate ? (
-          <label
-            htmlFor="my-drawer-2"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          >
-            <a
-              className="cursor-pointer"
-              key={uuidv7()}
-              onClick={() => handleItemClick(todayDate)}
-            >
-              <NoteListItem date={todayDate} isToday={true} />
-            </a>
-          </label>
+          <NoteListItemWrapper onClick={() => handleItemClick(todayDate)}>
+            <NoteListItem date={todayDate} isToday={true}/>
+          </NoteListItemWrapper>
         ) : (
-          <label
-            htmlFor="my-drawer-2"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          >
-            <AddNoteButton onClick={() => handleItemClick("add-note")} />
-          </label>
+          <NoteListItemWrapper onClick={() => handleItemClick("add-note")}>
+            <AddNoteButton />
+          </NoteListItemWrapper>
         )}
       </div>
-
       <div className=" w-full pt-4 bg-neutral gap-4 flex flex-col items-center lg:h-[calc(100vh-160px)] overflow-y-auto">
         {otherDates.map((date) => (
-          <label
-            htmlFor="my-drawer-2"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          >
-            <a
-              className="cursor-pointer"
-              key={uuidv7()}
-              onClick={() => handleItemClick(date)}
-            >
+          <NoteListItemWrapper onClick={() => handleItemClick(date)}>
               <NoteListItem date={date} isToday={false} />
-            </a>
-          </label>
+          </NoteListItemWrapper>
         ))}
-        <div className="h-16"></div>
       </div>
     </>
   );
