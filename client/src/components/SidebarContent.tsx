@@ -1,17 +1,24 @@
 import React from "react";
-import NoteListItem from "./NoteListItem/NoteListItem";
-import AddNoteButton from "./AddNoteButton";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../redux/store";
+import { setSelectedNote } from "../redux/selectedNoteSlice";
 import { checkIfIsToday } from "../utils/dateHelper";
 import { dates } from "../records";
 import { uuidv7 } from "uuidv7";
+import NoteListItem from "./NoteListItem/NoteListItem";
+import AddNoteButton from "./AddNoteButton";
 
-interface SidebarProps {
-  setSelectedItem: (item: string) => void;
-}
 
-const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
+
+const SidebarContent: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
   const todayDate = dates.find((date) => checkIfIsToday(date));
   const otherDates = dates.filter((date) => !checkIfIsToday(date));
+
+  const handleItemClick = (item:string) => {
+    dispatch(setSelectedNote(item));
+  }
 
   return (
     <>
@@ -25,7 +32,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
             <a
               className="cursor-pointer"
               key={uuidv7()}
-              onClick={() => setSelectedItem(todayDate)}
+              onClick={() => handleItemClick(todayDate)}
             >
               <NoteListItem date={todayDate} isToday={true} />
             </a>
@@ -36,7 +43,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           >
-            <AddNoteButton onClick={() => setSelectedItem("add-note")} />
+            <AddNoteButton onClick={() => handleItemClick("add-note")} />
           </label>
         )}
       </div>
@@ -51,7 +58,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ setSelectedItem }) => {
             <a
               className="cursor-pointer"
               key={uuidv7()}
-              onClick={() => setSelectedItem(date)}
+              onClick={() => handleItemClick(date)}
             >
               <NoteListItem date={date} isToday={false} />
             </a>

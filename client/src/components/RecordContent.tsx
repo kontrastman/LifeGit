@@ -1,17 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import TimeBadge from "./RecordItem/TimeBadge";
 import { records } from "../records";
 import RecordHeader from "./RecordItem/RecordHeader";
 
-interface RecordProps {
-  selectedItem: string | null;
-}
 
-const RecordContent: React.FC<RecordProps> = ({ selectedItem }) => {
-  const data = selectedItem ? records[selectedItem] : [];
+const RecordContent: React.FC = () => {
+  const selectedNote = useSelector((state: RootState) => state.selectedNote.selectedNote);
+  const data = selectedNote ? records[selectedNote] : [];
+
   return (
+  // {/*
+  //   if typeof selectedItem === string (this might be as a state on redux)
+  //   than <RecordHeader>
+  //   <TimeBadge>
+  //   ...
+  //   else
+  //   Empty page (pages/EmptyPage.tsx) (with some text like "You don't note anything today" )
+  // */}
     <div className="px-[30px]">
-      <RecordHeader date={selectedItem}/>
+      <RecordHeader/>
       <div className="pt-5">
         {data.map((record, index) => (
           <div key={index} className="flex flex-column w-content pb-[15px]">
