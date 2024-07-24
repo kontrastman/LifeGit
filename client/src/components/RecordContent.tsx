@@ -10,8 +10,8 @@ interface RecordProps {
 const RecordContent: React.FC<RecordProps> = ({ selectedItem }) => {
   const data = selectedItem ? records[selectedItem] : [];
   return (
-    <div className="pt-[30px] px-[30px]">
-      <RecordHeader />
+    <div className="px-[30px]">
+      <RecordHeader date={selectedItem}/>
       <div className="pt-5">
         {data.map((record, index) => (
           <div key={index} className="flex flex-column w-content pb-[15px]">

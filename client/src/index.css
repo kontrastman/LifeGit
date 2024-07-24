@@ -13,13 +13,13 @@ html:has(.drawer-toggle:checked) {
   scrollbar-color: #4F200D transparent;
 }
 
+* :hover{
+  scrollbar-color: #4F200D transparent;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     height: 100vh;
-}
-
-.w-fixed-sidebar :hover{
-  scrollbar-color: #935941 transparent;
 }
 
 @layer utilities {
@@ -28,7 +28,6 @@ body {
     }
 
     .overflow-y-hidden-important {
-      @apply overflow-y-hidden;
       overflow-y: hidden !important;
     }
 
@@ -37,6 +36,5 @@ body {
   @layer components {
     .btn {
       min-height: auto;
-
     }
   }
