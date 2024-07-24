@@ -18,19 +18,25 @@ body {
     height: 100vh;
 }
 
-
+.w-fixed-sidebar :hover{
+  scrollbar-color: #935941 transparent;
+}
 
 @layer utilities {
     .w-fixed-sidebar {
         width: 260px !important;
     }
 
-    .w-fixed-sidebar :hover{
-      scrollbar-color: #935941 transparent;
-    }
-
     .overflow-y-hidden-important {
       @apply overflow-y-hidden;
       overflow-y: hidden !important;
+    }
+
+  }
+
+  @layer components {
+    .btn {
+      min-height: auto;
+
     }
   }
