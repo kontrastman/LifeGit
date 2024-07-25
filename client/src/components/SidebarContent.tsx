@@ -14,7 +14,6 @@ import AddNoteButton from "./AddNoteButton";
 
 const SidebarContent: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const selectedNote = useSelector((state: RootState) => state.selectedNote.selectedNote);
 
   const todayDate = dates.find((date) => checkIfIsToday(date));
   const otherDates = dates.filter((date) => !checkIfIsToday(date));

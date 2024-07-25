@@ -4,12 +4,14 @@ import { RootState } from "../../redux/store";
 import TimeBadge from "./TimeBadge";
 import { records } from "../../records";
 import { MDXEditor} from '@mdxeditor/editor';
+import { selectIsToday } from "../../redux/selectedNoteSlice";
 
 
 const RecordsList: React.FC = () => {
   const selectedNote = useSelector(
     (state: RootState) => state.selectedNote.selectedNote
   );
+  const isToday = useSelector(selectIsToday);
   const data = selectedNote ? records[selectedNote] : [];
 
   return (
@@ -19,11 +21,11 @@ const RecordsList: React.FC = () => {
           <TimeBadge time={record.time} />
           <p className="pl-4 leading-1.5">{record.text}</p>
         </div>
-      ))}
-      <MDXEditor
+      ))} 
+      {isToday ? <MDXEditor
       key = {selectedNote}
       markdown={"Start writing here..."} 
-      contentEditableClassName="outline-none min-h-[50vh] max-w-none text-1 pl-20 prose"/>
+      contentEditableClassName="outline-none min-h-[50vh] max-w-none text-1 pl-20 prose"/> : []}
     </div>
   );
 };
