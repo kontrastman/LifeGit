@@ -1,13 +1,36 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import { selectIsToday } from "../../redux/selectedNoteSlice";
+import { useEditorContext } from "../../utils/EditorContext";
+import { formatTime } from "../../utils/dateHelper";
 import SaveIcon from '@mui/icons-material/Save';
 
-const SaveButton: React.FC = () => {
-  const isToday = useSelector(selectIsToday);
+import { records } from "../../records";
+import { addRecord } from "../../updateRecords";
 
+
+const SaveButton: React.FC = () => {
+  const { getEditorMarkdown } = useEditorContext();
+
+  const selectedNote = useSelector(
+    (state: RootState) => state.selectedNote.selectedNote
+  );
+
+  const handleSave = () => {
+    const markdown = getEditorMarkdown();
+    const newRecord = { 
+      time: formatTime(new Date()),
+      text: markdown,
+    }
+    addRecord(selectedNote!, newRecord);
+    console.log('Updated records:', records); // Для перевірки
+
+  }
+
+  const isToday = useSelector(selectIsToday);
   return (
-    <button className={`btn btn-accent ${isToday ? "" : "invisible"} w-[100px] btn-save h-[30px]`}>
+    <button onClick = {handleSave} className={`btn btn-accent ${isToday ? "" : "invisible"} w-[100px] btn-save h-[30px]`}>
       <SaveIcon fontSize="small"/>
       <span>Save</span>
     </button>
