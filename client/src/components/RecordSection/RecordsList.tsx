@@ -16,7 +16,7 @@ const RecordsList: React.FC = () => {
   const isToday = useSelector(selectIsToday);
   const data = selectedNote ? records[selectedNote] : [];
 
-  const { markdownContent, updateMarkdownContent, editorRef } = useEditorContext();
+  const { markdownContent, editorRef } = useEditorContext();
 
   return (
     <div className="pt-5">
@@ -30,7 +30,6 @@ const RecordsList: React.FC = () => {
         <MDXEditor
           key={selectedNote}
           markdown={markdownContent}
-          onChange={updateMarkdownContent}
           ref={editorRef}
           contentEditableClassName="outline-none min-h-[50vh] max-w-none text-1 pl-20"
         />

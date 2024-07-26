@@ -22,8 +22,15 @@ export const EditorProvider: React.FC<{children: React.ReactNode}> = ({children}
         return "";
     }
 
+    const updateMarkdownContent = (value: string) => {
+        setMarkdownContent(value);
+        if (editorRef.current) {
+            editorRef.current.setMarkdown(value);
+        }
+    };
+
     return (
-        <EditorContext.Provider value={{markdownContent, updateMarkdownContent: setMarkdownContent, editorRef, getEditorMarkdown}}>
+        <EditorContext.Provider value={{markdownContent, updateMarkdownContent, editorRef, getEditorMarkdown}}>
             {children}
         </EditorContext.Provider>
     );

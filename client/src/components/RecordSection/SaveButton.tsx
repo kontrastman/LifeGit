@@ -11,7 +11,7 @@ import { addRecord } from "../../updateRecords";
 
 
 const SaveButton: React.FC = () => {
-  const { getEditorMarkdown } = useEditorContext();
+  const { getEditorMarkdown, updateMarkdownContent } = useEditorContext();
 
   const selectedNote = useSelector(
     (state: RootState) => state.selectedNote.selectedNote
@@ -24,7 +24,7 @@ const SaveButton: React.FC = () => {
       text: markdown,
     }
     addRecord(selectedNote!, newRecord);
-    console.log('Updated records:', records); // Для перевірки
+    updateMarkdownContent("Start writing here...");
 
   }
 
