@@ -8,6 +8,7 @@ import { dates } from "../records";
 import NoteListItem from "./NoteListItem/NoteListItem";
 import NoteListItemWrapper from "./NoteListItem/NoteListItemWrapper";
 import AddNoteButton from "./AddNoteButton";
+import { addNote } from "../updateRecords";
 
 
 
@@ -30,7 +31,7 @@ const SidebarContent: React.FC = () => {
             <NoteListItem date={todayDate} isToday={true}/>
           </NoteListItemWrapper>
         ) : (
-          <NoteListItemWrapper onClick={() => handleItemClick("add-note")}>
+          <NoteListItemWrapper onClick={() => addNote(todayDate!)}>
             <AddNoteButton />
           </NoteListItemWrapper>
         )}

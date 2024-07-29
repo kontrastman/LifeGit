@@ -30,7 +30,7 @@ const SaveButton: React.FC = () => {
 
   const isToday = useSelector(selectIsToday);
   return (
-    <button onClick = {handleSave} className={`btn btn-accent ${isToday ? "" : "invisible"} w-[100px] btn-save h-[30px]`}>
+    <button onClick = {handleSave} className={`btn btn-accent ${isToday ? "" : "invisible"} lifegit-button`}>
       <SaveIcon fontSize="small"/>
       <span>Save</span>
     </button>

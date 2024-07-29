@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
-import selectedNoteSlice from './selectedNoteSlice';
 import selectedNoteReducer from './selectedNoteSlice';
+import loginModalReducer from './loginModalSlice';
 
 const store = configureStore({
     reducer: {
         selectedNote: selectedNoteReducer,
+        loginModal: loginModalReducer,
     },
 });
 

@@ -22,6 +22,12 @@ body {
     height: 100vh;
 }
 
+.lifegit-button {
+  min-width: 100px;
+  height: 40px;
+
+}
+
 @layer utilities {
     .w-fixed-sidebar {
         width: 260px !important;

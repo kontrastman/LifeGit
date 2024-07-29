@@ -8,7 +8,7 @@ interface Records {
 }
 
 export const records:Records = {
-    '25/07/2024': [
+    '29/07/2024': [
         {time: '14:05', text: "Hope I will finish it soon"}
     ],
     '23/07/2024': [
