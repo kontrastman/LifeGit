@@ -4,16 +4,20 @@ import NavAccountIcon from "./NavAccountIcon";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 import { selectIsLoginModalOpen } from "../../redux/loginModalSlice";
-import AuthModal from "../AuthModal/AuthModal";
+import { selectIsSignInModalOpen } from "../../redux/signInModalSlice";
+import LoginModal from "../AuthModal/LoginModal";
+import SignInModal from "../AuthModal/SignInModal";
 
 const NavbarRightSection: React.FC = () => {
-    const isOpen = useSelector((state: RootState) => selectIsLoginModalOpen(state));
+    const isLoginOpen = useSelector((state: RootState) => selectIsLoginModalOpen(state));
+    const isSigninOpen = useSelector((state: RootState) => selectIsSignInModalOpen(state));
 
 return (
     <div className="flex-none">
         <NavSettingsIcon/>
         <NavAccountIcon/>
-        {isOpen && <AuthModal/>}
+        {isLoginOpen && <LoginModal/>}
+        {isSigninOpen && <SignInModal/>}
     </div>
 )
 }
