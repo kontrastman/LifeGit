@@ -33,16 +33,7 @@ module.exports = {
         },
         
       },
-      "dark",
-      "emerald",
       "synthwave",
-      "halloween",//
-      "forest",//
-      "dracula", //+
-      "night", //
-      "coffee", //
-      "dim",//
-      "nord",//
       "sunset",//
     ],
   },

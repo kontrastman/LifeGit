@@ -18,7 +18,7 @@ const NavThemeIcon: React.FC = () => {
             type="radio"
             name="theme-dropdown"
             className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Default"
+            aria-label="Light"
             value="default"
           />
         </li>
@@ -28,7 +28,7 @@ const NavThemeIcon: React.FC = () => {
             name="theme-dropdown"
             className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Dark"
-            value="dark"
+            value="sunset"
           />
         </li>
         <li>
@@ -38,15 +38,6 @@ const NavThemeIcon: React.FC = () => {
             className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Synthwave"
             value="synthwave"
-          />
-        </li>
-        <li>
-        <input
-            type="radio"
-            name="theme-dropdown"
-            className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Emerald"
-            value="emerald"
           />
         </li>
       </DropDownMenu>
