@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'primary': ['"Inter"', 'sans-serif'],
+        'primary': ['Inter', 'sans-serif'],
       },
       fontSize: {
         cardTitle: ['10px', '12px'],

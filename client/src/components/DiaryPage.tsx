@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import NoteContent from "../components/NoteContent";
-import SidebarContent from "../components/SidebarContent";
+import NoteContent from "./NoteContent";
+import SidebarContent from "./SidebarContent";
 
 
 const PageWithSidebarTemplate: React.FC = () => {
