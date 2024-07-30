@@ -9,17 +9,17 @@ const handleIconClick = (event: React.MouseEvent) => {
 
 const NoteListItemSettings: React.FC = () => {
   return (
-    <div className="dropdown dropdown-end relative z-50">
+    <div className="dropdown dropdown-left z-50">
       <div
         tabIndex={0}
         role="button"
-        className=" btn btn-ghost text-base-200 hover:bg-transparent p-0"
+        className="btn btn-ghost text-text hover:bg-transparent p-0"
         onClick={handleIconClick}
       >
         <MoreHorizIcon />
       </div>
       <DropDownMenu>
-        <DeleteIcon/>
+        <button onClick={handleIconClick}><DeleteIcon/></button>
         </DropDownMenu>
     </div>
   );

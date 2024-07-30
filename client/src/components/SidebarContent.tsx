@@ -36,7 +36,7 @@ const SidebarContent: React.FC = () => {
           </NoteListItemWrapper>
         )}
       </div>
-      <div className=" w-full pt-4 bg-neutral gap-4 flex flex-col items-center lg:h-[calc(100vh-160px)] overflow-y-auto">
+      <div className=" w-full py-4 bg-neutral gap-4 flex flex-col items-center lg:h-[calc(100vh-160px)] overflow-y-auto">
         {otherDates.map((date) => (
           <NoteListItemWrapper key={uuidv4()} onClick={() => handleItemClick(date)}>
               <NoteListItem date={date} isToday={false} />

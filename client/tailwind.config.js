@@ -11,7 +11,6 @@ module.exports = {
       },
       colors: {
         'date-bg': '#FBFBFB',
-        'generalText': '#282828',
         "ghost": "#D0D0D0",
       },
       dropShadow: {
@@ -30,11 +29,21 @@ module.exports = {
           "text": "#282828",
           "ghost": "#D0D0D0",
           "base-100": "#ffffff",
+          "base-200": '#FBFBFB'
         },
         
       },
       "dark",
-      "cupcake",
+      "emerald",
+      "synthwave",
+      "halloween",//
+      "forest",//
+      "dracula", //+
+      "night", //
+      "coffee", //
+      "dim",//
+      "nord",//
+      "sunset",//
     ],
   },
   plugins: [require("daisyui")],

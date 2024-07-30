@@ -4,13 +4,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+
 html:has(.drawer-toggle:checked) {
   scrollbar-gutter: auto;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4F200D transparent;
+  scrollbar-track-color: transparent;
 }
 
 * :hover{

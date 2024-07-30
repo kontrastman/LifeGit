@@ -1,5 +1,5 @@
 import React from "react";
-import NavSettingsIcon from "./NavSettingsIcon";
+import NavThemeIcon from "./NavThemeIcon";
 import NavAccountIcon from "./NavAccountIcon";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
@@ -14,7 +14,7 @@ const NavbarRightSection: React.FC = () => {
 
 return (
     <div className="flex-none">
-        <NavSettingsIcon/>
+        <NavThemeIcon/>
         <NavAccountIcon/>
         {isLoginOpen && <LoginModal/>}
         {isSigninOpen && <SignInModal/>}
