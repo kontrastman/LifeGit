@@ -13,7 +13,7 @@ const NoteListItemSettings: React.FC = () => {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-ghost text-text hover:bg-transparent p-0"
+        className="btn btn-ghost text-ghost hover:bg-transparent p-0"
         onClick={handleIconClick}
       >
         <MoreHorizIcon />
